@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContextType;
 @LocalBean
 public class AbstractPersistence {
 
-	@PersistenceContext(type = PersistenceContextType.EXTENDED, unitName = "TabaPlanner")
+	@PersistenceContext(type = PersistenceContextType.EXTENDED, unitName = "TabaPlannerEJB")
 	EntityManager entityManager;
 
 	public Object insert(Object object) {
