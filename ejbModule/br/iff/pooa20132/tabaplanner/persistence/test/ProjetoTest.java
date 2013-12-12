@@ -16,12 +16,11 @@ import br.iff.pooa20132.tabaplanner.persistence.controller.ProjetoPersistenceRem
 import br.iff.pooa20132.tabaplanner.persistence.entity.Projeto;
 
 public class ProjetoTest {
-
 	private ProjetoPersistenceRemote pproj;
-	
+
 	@Before
 	public void setUp() throws Exception {
-		
+
 		Context context = null;
 		pproj = null;
 		try {
@@ -33,7 +32,7 @@ public class ProjetoTest {
 
 		} catch (NamingException e) {
 			e.printStackTrace();
-			
+
 		}
 
 	}
@@ -45,10 +44,43 @@ public class ProjetoTest {
 	@Test
 	public void testinserir() {
 		String uid = UUID.randomUUID().toString();
-		Projeto prop = pproj.inserir(uid, new Date(), new Date(),
-				"Descricao", "Nome");
+		Projeto prop = pproj.inserir(uid, new Date(), new Date(), "Descricao",
+				"Nome");
 		assertEquals(prop.getUid(), uid);
 		pproj.delete(uid);
 	}
 
+	@Test
+	public void testupdate() {
+		String uid = UUID.randomUUID().toString();
+		Projeto prop = pproj.inserir(uid, new Date(), new Date(), "Descricao",
+				"Nome");
+
+		Projeto propUp = pproj.update(uid, new Date(), new Date(),
+				"Descricao1", "Nome");
+
+		assertEquals(propUp.getDescricao(), "Descricao1");
+		pproj.delete(uid);
+	}
+
+	@Test
+	public void testfind() {
+		String uid = UUID.randomUUID().toString();
+		Projeto prop = pproj.inserir(uid, new Date(), new Date(), "Descricao",
+				"Nome");
+
+		Projeto propUp = pproj.find(uid);
+
+		assertEquals(propUp.getDescricao(), "Descricao");
+		pproj.delete(uid);
+	}
+
+	@Test
+	public void testdelete() {
+		String uid = UUID.randomUUID().toString();
+		Projeto prop = pproj.inserir(uid, new Date(), new Date(), "Descricao",
+				"Nome");
+
+		pproj.delete(uid);
+	}
 }
