@@ -3,12 +3,16 @@ package br.iff.pooa20132.tabaplanner.persistence.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.xml.bind.annotation.XmlElement;
-
 
 import br.iff.pooa20132.tabaplanner.persistence.entity.Projeto;
 
-public class ProjetoPersistence extends AbstractPersistence {
+
+@Stateless
+@LocalBean
+public class ProjetoPersistence extends AbstractPersistence implements ProjetoPersistenceRemote{
 
 	public Projeto inserir(String uid, Date datainicio, Date datafim,
 			String descricao, String nome) {
